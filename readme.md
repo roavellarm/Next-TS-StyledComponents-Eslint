@@ -50,7 +50,7 @@ $ mkdir pages && touch pages/index.tsx
 export default function Landing() {
   return (
     <div>
-      <h1>FIRST PAGE</h1>
+      <h1>Hello World</h1>
     </div>
   )
 }
@@ -309,8 +309,23 @@ $ yarn add -D prettier eslint-config-prettier eslint-plugin-prettier
       "off",
       { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
     ],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      { "js": "never", "jsx": "never", "ts": "never", "tsx": "never" }
+    ],
     "react/jsx-props-no-spreading": "off",
     "jsx-a11y/anchor-is-valid": "off"
+  },
+  "globals": {
+    "React": "writable"
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
   }
 }
 ```
@@ -340,6 +355,22 @@ $ touch .prettierrc
   "scripts": {
     // ...
     "lint": "eslint './**/*.{js,ts,tsx}' --quiet"
+  }
+}
+```
+
+9. To add typescript intelicense to the `theme provider` add the following
+   interface at the end of the `next-env.d.ts` file
+
+```JS
+import 'styled-components'
+
+declare module 'styled-components' {
+  export interface DefaultTheme {
+    colors: {
+      primary: string
+      secondary: string
+    }
   }
 }
 ```
