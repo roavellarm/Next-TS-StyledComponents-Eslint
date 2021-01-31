@@ -211,13 +211,24 @@ declare module 'styled-components' {
 }
 ```
 
-11. Now you can get the theme props with intellisense. Try changing the title
-    color like this:
+11. Now you can get the theme props with intellisense. Try adding a
+    styled-component Title getting the color from the theme provider in
+    `index.tsx` file, like this:
 
 ```JS
+import styled from 'styled-components'
+
 const Title = styled.h1`
   color: ${({ theme }) => theme.colors.primary};
 `
+
+export default function Landing() {
+  return (
+    <div>
+      <Title>Hello World</Title>
+    </div>
+  )
+}
 ```
 
 ## **3. Add git to the project**
