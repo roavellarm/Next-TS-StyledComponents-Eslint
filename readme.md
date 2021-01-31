@@ -241,3 +241,105 @@ $ git add .
 $ git commit -m "First commit"
 $ git push -u origin master
 ```
+
+## **4. Adding Eslint and Prettier to the project**
+
+1. Add eslint and other packages to the dev dependencies
+
+```BASH
+$ yarn add -D eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint-plugin-react
+
+# and also this
+$ yarn add -D eslint-config-airbnb@latest eslint-plugin-import@latest eslint-plugin-jsx-a11y@latest eslint-plugin-react-hooks@latest
+```
+
+2. Create a `.eslintrc.json` file at the root of the project
+
+```BASH
+$ touch .eslintrc.json
+```
+
+3. Add the following configuration to `.eslintrc.json` file
+
+```JSON
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": ["airbnb-base"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": ["@typescript-eslint"],
+  "rules": {}
+}
+```
+
+4. Add prettier and some plugins to make it work with Eslint to dev depencencies
+
+```BASH
+$ yarn add -D prettier eslint-config-prettier eslint-plugin-prettier
+```
+
+5. Let's update the `.eslintrc.json` file to integrate Prettier with eslint
+
+```JSON
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": ["plugin:react/recommended", "airbnb", "prettier"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": ["react", "@typescript-eslint", "prettier"],
+  "rules": {
+    "prettier/prettier": "error",
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": [
+      "off",
+      { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
+    ],
+    "react/jsx-props-no-spreading": "off",
+    "jsx-a11y/anchor-is-valid": "off"
+  }
+}
+```
+
+6. Let's create the `.prettierrc` file to add prettier configuration
+
+```BASH
+$ touch .prettierrc
+```
+
+7. Let's add the following configuration to `.prettierrc` file
+
+```JSON
+{
+  "arrowParens": "always",
+  "semi": false,
+  "singleQuote": true,
+  "trailingComma": "es5",
+  "printWidth": 80
+}
+```
+
+8. Add the `lint` command to `scripts` in the `package.json` file
+
+```JSON
+{
+  "scripts": {
+    // ...
+    "lint": "eslint './**/*.{js,ts,tsx}' --quiet"
+  }
+}
+```
