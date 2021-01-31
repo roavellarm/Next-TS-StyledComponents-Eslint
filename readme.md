@@ -5,7 +5,7 @@
 1. Create a directory with yout project title and access it
 
 ```BASH
-$ mkdir my-web-app && cd my-web-app
+$ mkdir <your-project-title> && cd <your-project-title>
 ```
 
 2. Initialize the `package.json` file
@@ -160,9 +160,19 @@ import { AppProps } from 'next/app'
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
-  body {
+  html, body {
     margin: 0 auto;
     padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  * {
     box-sizing: border-box;
   }
 `
@@ -183,6 +193,31 @@ export default function App({ Component, pageProps }: AppProps) {
     </>
   )
 }
+```
+
+10. To add typescript intelicense to the `theme provider` add the following
+    interface at the end of the `next-env.d.ts` file and after restart the
+    server
+
+```JS
+import 'styled-components'
+
+declare module 'styled-components' {
+  export interface DefaultTheme {
+    colors: {
+      primary: string
+    }
+  }
+}
+```
+
+11. Now you can get the theme props with intelicense. Try changing the title
+    color like this:
+
+```JS
+const Title = styled.h1`
+  color: ${({ theme }) => theme.colors.primary};
+`
 ```
 
 ## **3. Add git to the project**
@@ -359,18 +394,5 @@ $ touch .prettierrc
 }
 ```
 
-9. To add typescript intelicense to the `theme provider` add the following
-   interface at the end of the `next-env.d.ts` file
-
-```JS
-import 'styled-components'
-
-declare module 'styled-components' {
-  export interface DefaultTheme {
-    colors: {
-      primary: string
-      secondary: string
-    }
-  }
-}
-```
+From that point you can check all linter issues by running `yarn lint` and fix
+them by running `yarn lint --fix`
