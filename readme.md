@@ -231,5 +231,13 @@ $ git init
 4. Add a remote repository
 
 ```BASH
-$ git remote add origin git@github.com:<yourGitUser>/<yourRepoTitle>.git
+$ git remote add origin git@github.com:<yourGitHubAccount>/<yourRepoTitle>.git
+```
+
+5. If you want to commit and push your content to github run:
+
+```BASH
+$ git add .
+$ git commit -m "First commit"
+$ git push -u origin master
 ```
