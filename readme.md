@@ -195,7 +195,7 @@ export default function App({ Component, pageProps }: AppProps) {
 }
 ```
 
-10. To add typescript intelicense to the `theme provider` add the following
+10. To add typescript intellisense to the `theme provider` add the following
     interface at the end of the `next-env.d.ts` file and after restart the
     server
 
@@ -211,7 +211,7 @@ declare module 'styled-components' {
 }
 ```
 
-11. Now you can get the theme props with intelicense. Try changing the title
+11. Now you can get the theme props with intellisense. Try changing the title
     color like this:
 
 ```JS
